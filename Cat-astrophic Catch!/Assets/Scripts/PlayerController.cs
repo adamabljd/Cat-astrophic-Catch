@@ -54,4 +54,15 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        var effects = other.gameObject.GetComponents<IApplyEffects>();
+
+        foreach (var effect in effects)
+        {
+            effect.ApplyEffect();
+        }
+        Destroy(other.gameObject);
+    }
+
 }

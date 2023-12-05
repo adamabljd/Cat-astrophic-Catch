@@ -6,9 +6,10 @@ public class BackgroundSetter : MonoBehaviour
 {
     public SpriteRenderer backgroundRenderer;
     public Sprite[] backgroundSprites;
+    int index;
     void Start()
     {
-        int index = GameManager.Instance.SelectedBackgroundIndex;
+        index = GameManager.Instance.SelectedBackgroundIndex;
         backgroundRenderer.sprite = backgroundSprites[index];
     }
 }
