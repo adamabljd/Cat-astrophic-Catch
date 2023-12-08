@@ -17,7 +17,7 @@ public class ObjectSpawner : MonoBehaviour
     private int typeHealthWeight = 12;
 
     void Start(){
-        float spawnDelay = Random.Range(2f, 5f);
+        float spawnDelay = Random.Range(2f, 3f);
         InvokeRepeating("SpawnObject", 1f, spawnDelay);
     }
 

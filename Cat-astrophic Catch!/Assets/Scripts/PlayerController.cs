@@ -57,10 +57,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         var effects = other.gameObject.GetComponents<IApplyEffects>();
+        Debug.Log("effect outside collision");
 
         foreach (var effect in effects)
         {
             effect.ApplyEffect();
+            Debug.Log("effect in collision");
         }
         Destroy(other.gameObject);
     }

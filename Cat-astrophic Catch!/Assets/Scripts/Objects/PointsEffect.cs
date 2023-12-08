@@ -17,6 +17,7 @@ public class PointsEffect : MonoBehaviour, IApplyEffects
     }
 
     public void ApplyEffect(){
-        Debug.Log("Points Effect applied");
+        ScoreManager.Instance.IncreaseScore(1);
+        Debug.Log("effect in object");
     }
 }
