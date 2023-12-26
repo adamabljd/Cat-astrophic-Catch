@@ -18,6 +18,5 @@ public class BadEffect : MonoBehaviour, IApplyEffects
 
     public void ApplyEffect(){
         ScoreManager.Instance.IncreaseScore(-1);
-        Debug.Log("Bad Effect applied");
     }
 }

@@ -16,6 +16,11 @@ public class DeathEffect : MonoBehaviour, IApplyEffects
         
     }
     public void ApplyEffect(){
-        Debug.Log("Death Effect applied");
+        if(GameManager.Instance.isTimerModeActive == true){
+            GameManager.Instance.addCurrentTime(-10f);
+        } else if(GameManager.Instance.isSurvivalModeActive == true){
+            GameManager.Instance.addCurrentLives(-1);
+        }
+        
     }
 }

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Camera mainCamera;
     private Vector3 offset;
     private bool isDragging = false;
-    private float minX, maxX; // Set these in the Inspector to define movement boundaries
+    private float minX, maxX;
 
     void Start()
     {
