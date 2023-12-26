@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BadEffect : MonoBehaviour, IApplyEffects
+public class ObjectManager : MonoBehaviour
 {
+    private float bottomBound = -5.3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +15,9 @@ public class BadEffect : MonoBehaviour, IApplyEffects
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void ApplyEffect(){
-        ScoreManager.Instance.IncreaseScore(-1);
-        Debug.Log("Bad Effect applied");
+        if (transform.position.y < bottomBound)
+        {
+            Destroy(gameObject);
+        }
     }
 }
