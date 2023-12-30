@@ -11,9 +11,13 @@ public class PlayerController : MonoBehaviour
     private bool isDragging = false;
     private float minX, maxX;
 
+    private int maxHealth = 1;
+    private int currentHealth;
+
+
     void Start()
     {
-        mainCamera = Camera.main; // Cache the main camera
+        mainCamera = Camera.main;
 
         // Calculate the screen boundaries in world space
         float screenHalfWidthInWorldUnits = mainCamera.orthographicSize * mainCamera.aspect;
@@ -21,11 +25,13 @@ public class PlayerController : MonoBehaviour
 
         minX = -screenHalfWidthInWorldUnits + playerHalfWidth;
         maxX = screenHalfWidthInWorldUnits - playerHalfWidth;
+
+        currentHealth = maxHealth;
     }
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name != "MainMenu"){
+        if (GameManager.Instance.isPlaying){
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -52,19 +58,35 @@ public class PlayerController : MonoBehaviour
                     isDragging = false;
                 }
             }
+            playerIsDead();
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         var effects = other.gameObject.GetComponents<IApplyEffects>();
-        Debug.Log("effect outside collision");
 
         foreach (var effect in effects)
         {
             effect.ApplyEffect();
-            Debug.Log("effect in collision");
         }
         Destroy(other.gameObject);
     }
 
+    public void playerIsDead(){
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            GameManager.Instance.GameOver();
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
 }

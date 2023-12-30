@@ -16,11 +16,13 @@ public class DeathEffect : MonoBehaviour, IApplyEffects
         
     }
     public void ApplyEffect(){
-        if(GameManager.Instance.isTimerModeActive == true){
-            GameManager.Instance.addCurrentTime(-10f);
-        } else if(GameManager.Instance.isSurvivalModeActive == true){
-            GameManager.Instance.addCurrentLives(-1);
+        if (GameManager.Instance.isPlaying)
+        {
+            PlayerController player = FindObjectOfType<PlayerController>();
+            if (player != null)
+            {
+                player.TakeDamage(1);
+            }
         }
-        
     }
 }

@@ -10,9 +10,9 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject[] typePowerUpsObjects;
     public GameObject[] typeHealthObjects;
 
-    private int typePointsWeight = 8;
-    private int typeBadWeight = 9;
-    private int typeDeathWeight = 10;
+    private int typePointsWeight = 6;
+    private int typeDeathWeight = 9;
+    private int typeBadWeight = 10;
     private int typePowerUpsWeight = 11;
     private int typeHealthWeight = 12;
 
@@ -35,10 +35,11 @@ public class ObjectSpawner : MonoBehaviour
 
     GameObject[] ChooseRandomType()
     {
-        int random = Random.Range(0, 12);
+        int random = Random.Range(0, 10);
         if (random < typePointsWeight){return typePointsObjects;}
-        else if (random < typeBadWeight){return typeBadObjects;} 
         else if (random < typeDeathWeight){return typeDeathObjects;} 
+        else if (random < typeBadWeight){return typeBadObjects;} 
+    
         // else if (random < typePowerUpsWeight){return typePowerUpsObjects;} 
         // else if (random < typeHealthWeight){return typeHealthObjects;} 
         else return null;
